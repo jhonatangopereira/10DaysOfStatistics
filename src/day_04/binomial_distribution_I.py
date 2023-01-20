@@ -10,17 +10,18 @@ Task:
   your result, rounded to a scale of 3 decimal places (i.e., 1.234 format).
 '''
 
-def fact(n):
-  return 1 if n == 0 else n * fact(n - 1)
+def factorial(n:int) -> int:
+  return 1 if n == 0 else n * factorial(n - 1)
 
-def comb(n, x):
-  return fact(n) / (fact(x) * fact(n - x))
+def combination(n:int, k:int) -> float:
+  return factorial(n) / (factorial(k) * factorial(n - k))
 
-def b(x, n, p):
-  return comb(n, x) * (p ** x) * ((1 - p) ** (n - x))
+def binomial_distribution(n:int, k:int, p:int) -> float:
+  return combination(n, k) * (p ** k) * ((1 - p) ** (n - k))
 
+NUMBER_OF_SAMPLES = 6
 boys_ratio, girls_ratio = map(float, input().split())
 odds = boys_ratio / girls_ratio
-result = sum([b(i, 6, odds / (1 + odds)) for i in range(3, 7)])
+result = sum([binomial_distribution(NUMBER_OF_SAMPLES, i, odds / (1 + odds)) for i in range(3, NUMBER_OF_SAMPLES + 1)])
 
 print(f"{result:.3f}")
