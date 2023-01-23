@@ -10,17 +10,26 @@ deviation.
 #!/bin/python3
 
 import math
-import os
-import random
-import re
-import sys
 
-def stdDev(arr):
+def standard_deviation(arr:list) -> None:
+  '''
+  Calculate standard deviation of an array.
+
+  Args:
+    arr (list): Array used to calculate.
+  Returns:
+    standard_deviation (float): Standard deviation calculated.
+  '''
+  # mean of the array
   mean = sum(arr) / len(arr)
+
+  # calculating the variance
   variance = 0
   for element in arr:
     variance += (element - mean) ** 2
   variance /= len(arr)
+
+  # standard deviation is the square root of variance
   standard_deviation = math.sqrt(variance)
   print(f"{standard_deviation:.1f}")
 
@@ -29,4 +38,4 @@ if __name__ == '__main__':
 
   vals = list(map(int, input().rstrip().split()))
 
-  stdDev(vals)
+  standard_deviation(vals)
